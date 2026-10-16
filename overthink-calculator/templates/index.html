@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11101b">
+  <meta name="description" content="A calculator that makes easy math unnecessarily dramatic.">
+  <title>OverThink Calculator — The Calculator That Makes Math Harder</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="OverThink Calculator home">
+        <span class="brand-mark" aria-hidden="true">∑</span>
+        <span>OverThink<span class="brand-light"> Calculator</span></span>
+      </a>
+      <div class="header-actions">
+        <button class="icon-button" id="sound-toggle" type="button" aria-label="Mute sound effects" title="Toggle sound">🔊</button>
+        <button class="icon-button" id="theme-toggle" type="button" aria-label="Switch to light mode" title="Switch theme">☀️</button>
+        <span class="genius-wrap"><button class="genius-button" id="genius-toggle" type="button" aria-pressed="false">✦ Genius Mode <span id="genius-status">OFF</span></button></span>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="live-dot"></span> CERTIFIED UNNECESSARY SINCE JUST NOW</div>
+          <h1>Math, but make it<br><span class="gradient-text">dramatic.</span></h1>
+          <p>Meet the calculator that turns one tiny equation into a full academic event.</p>
+          <div class="tagline">“Why solve it simply when you can overthink it?”</div>
+        </div>
+        <div class="hero-sticker" aria-hidden="true">
+          <span class="sticker-orbit">VERY SCIENTIFIC</span>
+          <span class="sticker-symbol">÷</span>
+          <span class="sticker-note">probably</span>
+        </div>
+      </section>
+
+      <section class="workspace" aria-label="Calculator and overthinking dashboard">
+        <div class="calculator-card panel">
+          <div class="section-heading">
+            <div><span class="section-kicker">THE CALCULATION LAB</span><h2>Enter your equation</h2></div>
+            <span class="lab-badge">● SYSTEMS MOSTLY ONLINE</span>
+          </div>
+          <div class="display-wrap">
+            <div class="display-meta"><span>YOUR VERY IMPORTANT MATH</span><span id="display-hint">READY WHEN YOU ARE</span></div>
+            <input id="expression" class="expression-display" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" aria-label="Math expression" placeholder="e.g. 2 + 2">
+            <div class="answer-line" id="answer-line" aria-live="polite"><span id="answer-label">THE ANSWER WILL APPEAR HERE</span><strong id="answer-value"></strong></div>
+          </div>
+          <div class="keypad" id="keypad" aria-label="Calculator keys">
+            <button class="key key-muted" data-action="clear" type="button">AC</button>
+            <button class="key key-muted" data-value="(" type="button">(</button>
+            <button class="key key-muted" data-value=")" type="button">)</button>
+            <button class="key key-accent" data-action="delete" type="button" aria-label="Delete last character">⌫</button>
+            <button class="key" data-value="7" type="button">7</button>
+            <button class="key" data-value="8" type="button">8</button>
+            <button class="key" data-value="9" type="button">9</button>
+            <button class="key key-accent" data-value="/" type="button">÷</button>
+            <button class="key" data-value="4" type="button">4</button>
+            <button class="key" data-value="5" type="button">5</button>
+            <button class="key" data-value="6" type="button">6</button>
+            <button class="key key-accent" data-value="*" type="button">×</button>
+            <button class="key" data-value="1" type="button">1</button>
+            <button class="key" data-value="2" type="button">2</button>
+            <button class="key" data-value="3" type="button">3</button>
+            <button class="key key-accent" data-value="-" type="button">−</button>
+            <button class="key key-muted" data-value="%" type="button">%</button>
+            <button class="key" data-value="0" type="button">0</button>
+            <button class="key" data-value="." type="button">.</button>
+            <button class="key key-accent" data-value="+" type="button">+</button>
+            <button class="key key-parenthesis" data-value="(" type="button">(</button>
+            <button class="key key-parenthesis" data-value=")" type="button">)</button>
+            <button class="key key-equals" data-action="calculate" type="button">= <span>LET'S OVERTHINK</span></button>
+          </div>
+          <div class="calculator-tools">
+            <button class="text-button" id="complicate-button" type="button">✧ Make it more complicated</button>
+            <label class="duration-control" for="duration"><span>Drama level</span><input id="duration" type="range" min="1" max="8" value="4"><output id="duration-value">4s</output></label>
+          </div>
+          <p class="keyboard-note">Tip: your keyboard works too. Enter to calculate · Esc to clear</p>
+        </div>
+
+        <aside class="side-column">
+          <section class="score-card panel">
+            <div class="score-title"><div><span class="section-kicker">YOUR PERSONAL DASHBOARD</span><h2>Overthinking stats</h2></div><span class="score-icon">✦</span></div>
+            <div class="score-meter"><div class="meter-copy"><span>USELESSNESS SCORE</span><strong><span id="score-value">0</span><small>/100</small></strong></div><div class="meter-track"><span id="score-fill"></span></div><p id="score-title">Unranked Calculator User</p></div>
+            <div class="stat-grid">
+              <div class="stat-item"><span>QUESTIONS ANSWERED</span><strong id="questions-count">0</strong></div>
+              <div class="stat-item"><span>TIME WASTED</span><strong id="time-wasted">0s</strong></div>
+              <div class="stat-item"><span>CALCULATIONS</span><strong id="calculations-count">0</strong></div>
+              <div class="stat-item"><span>DRAMA LEVEL</span><strong id="drama-stat">4s</strong></div>
+            </div>
+            <div class="score-footnote">Your time is valuable. We have chosen to ignore that.</div>
+          </section>
+          <section class="history-card panel">
+            <div class="history-heading"><div><span class="section-kicker">THE PAPER TRAIL</span><h2>Recent calculations</h2></div><button class="clear-history" id="clear-history" type="button">CLEAR</button></div>
+            <div id="history-list" class="history-list"><p class="empty-history">No questionable decisions yet.</p></div>
+          </section>
+        </aside>
+      </section>
+
+      <section class="bottom-actions">
+        <div><span class="section-kicker">MORE ACADEMIC NONSENSE</span><h2>Need extra math theatre?</h2></div>
+        <button class="explain-button" id="explain-button" type="button"><span aria-hidden="true">🧠</span> Explain why 2 + 2 = 4</button>
+      </section>
+      <footer><span>OVERTHINK CALCULATOR</span><span>Results are correct. The process is questionable.</span><span>MADE FOR FUNATHON ✦</span></footer>
+    </main>
+  </div>
+
+  <div class="overlay hidden" id="details-overlay" role="dialog" aria-modal="true" aria-labelledby="details-title">
+    <section class="flow-card details-card">
+      <button class="modal-close" id="close-details" type="button" aria-label="Close profile details">×</button>
+      <span class="section-kicker">PROFILE REQUIRED</span>
+      <h2 id="details-title">Before we calculate, tell us who you are.</h2>
+      <p>We need your details to verify that the math is being performed by a real, sufficiently dramatic person.</p>
+      <form id="user-details-form" class="details-form">
+        <div class="details-grid">
+          <label class="detail-field">
+            <span>Full name</span>
+            <input id="user-name" name="fullName" type="text" autocomplete="name" required>
+          </label>
+          <label class="detail-field">
+            <span>Email</span>
+            <input id="user-email" name="email" type="email" autocomplete="email" required>
+          </label>
+          <label class="detail-field">
+            <span>College / university</span>
+            <input id="user-college" name="college" type="text" autocomplete="organization" required>
+          </label>
+          <label class="detail-field">
+            <span>Major / field</span>
+            <input id="user-major" name="major" type="text" required>
+          </label>
+          <label class="detail-field">
+            <span>Graduation year</span>
+            <input id="user-year" name="graduationYear" type="number" min="2025" max="2100" required>
+          </label>
+          <label class="detail-field">
+            <span>Favorite excuse for procrastinating</span>
+            <input id="user-excuse" name="excuse" type="text" maxlength="80" required>
+          </label>
+        </div>
+        <button class="primary-button" type="submit">Lock in my profile</button>
+      </form>
+    </section>
+  </div>
+  <div class="overlay hidden" id="flow-overlay" role="dialog" aria-modal="true" aria-labelledby="flow-title">
+    <section class="flow-card">
+      <button class="modal-close" id="close-flow" type="button" aria-label="Close calculation flow">×</button>
+      <div class="flow-progress"><span id="flow-progress-fill"></span></div>
+      <div class="flow-content" id="flow-content"></div>
+    </section>
+  </div>
+  <div class="overlay hidden" id="explanation-overlay" role="dialog" aria-modal="true" aria-labelledby="explanation-title">
+    <section class="flow-card explanation-card">
+      <button class="modal-close" id="close-explanation" type="button" aria-label="Close explanation">×</button>
+      <div class="explanation-icon">🧠</div>
+      <span class="section-kicker">A PEER-REVIEWED NON-EXPLANATION</span>
+      <h2 id="explanation-title">Why does 2 + 2 = 4?</h2>
+      <p>Two is a pair of socks. Another two is a second pair of socks. When the socks unionize, there are four socks in the room. This conclusion has been verified by three imaginary professors and one confused pigeon.</p>
+      <button class="primary-button" id="close-explanation-button" type="button">That was academically useful</button>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="confetti-layer" id="confetti-layer" aria-hidden="true"></div>
+</body>
+</html>
